@@ -30,11 +30,24 @@
 - You can split a string in javascript using `str.split("<delim>")`.
 - Don't forget to keep in mind what the returned data will look like to avoid off by one errors.
 
-
 ## My First Async I/O"
+- The Asynchronous version of a function simply removes the `Sync` from the function.
+- Ex: `fs.readFileSync()` is now `fs.readFile()`.
+- The syntax for callbacks looks like `function callback (err, data){}`.
+- It is very important to understand the Async versions since this is the *node way*.
+- See Reference below for link to reminder.
+- High level path:
+  1. Define a function passing the callback to display/write.
+  2. Define the callback to display/write the data.
+  3. Call (1) passing it (2).
 
 ## Filtered LS"
 
 ## Make it Modular"
 
 ## HTTP Client"
+
+## Research:
+
+## Reference:
+- [Callbacks]( https://github.com/maxogden/art-of-node#callbacks )
