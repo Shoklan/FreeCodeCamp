@@ -1,6 +1,6 @@
 # Learn You Node
 
-## Hello World"
+## Hello World
 - If you get a `process-nextick-args` error, then run:
   1. `nvm install 6.5.0`
   2. `nvm use 6.5.0`
@@ -10,7 +10,7 @@
 - Write output to the console using `console.log( "text" )`.
 - Don't forget that javascript needs `;` at the end of lines.
 
-## Baby Steps"
+## Baby Steps
 - Node saves command line arguments via `process.argv`.
 - This object is an array.
 - The format of the array is always:
@@ -21,7 +21,7 @@
   1. `+process.argv[]`
   2. `Number( process.argv[])`
 
-## My First I/O"
+## My First I/O
 - An import or include looks like `var fs = require('fs')`.
 - All synchronous calls end with `Sync`.
 - To read a file, use `fs.readFileSync(<path_to_file>)`.
@@ -30,7 +30,7 @@
 - You can split a string in javascript using `str.split("<delim>")`.
 - Don't forget to keep in mind what the returned data will look like to avoid off by one errors.
 
-## My First Async I/O"
+## My First Async I/O
 - The Asynchronous version of a function simply removes the `Sync` from the function.
 - Ex: `fs.readFileSync()` is now `fs.readFile()`.
 - The syntax for callbacks looks like `function callback (err, data){}`.
@@ -41,7 +41,16 @@
   2. Define the callback to display/write the data.
   3. Call (1) passing it (2).
 
-## Filtered LS"
+## Filtered LS
+- You can read files from a directory using `fs.readdir(<path>, <callback>)`.
+- You can use the `path` module to assist in processing filenames and directories.
+- `const path = require('path')`.
+- You can extract the extension of a file using `path.extname()`.
+- Note that this will return the `.`; such as `.html`.
+- Placing `callback()` inside of a for loop will not interrupt nor end the loop.
+- Node has a For Each function called `<list>.forEach( )` that you can put a function inside.
+
+
 
 ## Make it Modular"
 
