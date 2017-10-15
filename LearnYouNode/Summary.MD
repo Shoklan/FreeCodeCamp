@@ -8,8 +8,7 @@
   4. `npm install -g learnyounode`
 - To run the program use `node <program_name>.js`.
 - Write output to the console using `console.log( "text" )`.
--
-
+- Don't forget that javascript needs `;` at the end of lines.
 
 ## Baby Steps"
 
