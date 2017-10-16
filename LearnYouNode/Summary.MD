@@ -50,8 +50,6 @@
 - Placing `callback()` inside of a for loop will not interrupt nor end the loop.
 - Node has a For Each function called `<list>.forEach( )` that you can put a function inside.
 
-
-
 ## Make it Modular"
 
 ## HTTP Client"
