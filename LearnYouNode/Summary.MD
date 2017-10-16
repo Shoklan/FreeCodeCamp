@@ -51,6 +51,13 @@
 - Node has a For Each function called `<list>.forEach( )` that you can put a function inside.
 
 ## Make it Modular"
+- To create a module, you'd simply create a new `mymodule.js` file with your functions inside it.
+- To have the function exported by default, you'd assign `module.exports = <your_functions_code>`.
+- To include the new function, you'd import the local file using `require('./mymodule.js')` since it's in the current directory.
+- Don't forget to check for errors: `if( err ) return callback( err )`.
+- The node way is to return `null, data` in the callback: `callback( null, data)`.
+- This is to signify that no errors were detected.
+- Don't forget to move dependencies into the module.
 
 ## HTTP Client"
 
