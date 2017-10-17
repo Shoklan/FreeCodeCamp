@@ -50,7 +50,7 @@
 - Placing `callback()` inside of a for loop will not interrupt nor end the loop.
 - Node has a For Each function called `<list>.forEach( )` that you can put a function inside.
 
-## Make it Modular"
+## Make it Modular
 - To create a module, you'd simply create a new `mymodule.js` file with your functions inside it.
 - To have the function exported by default, you'd assign `module.exports = <your_functions_code>`.
 - To include the new function, you'd import the local file using `require('./mymodule.js')` since it's in the current directory.
@@ -59,7 +59,45 @@
 - This is to signify that no errors were detected.
 - Don't forget to move dependencies into the module.
 
-## HTTP Client"
+## HTTP Client
+- Making http calls is done using the http module.
+- To make a simple GET request, you use `http.get()`.
+- The returned object is of type **response**.
+- This is a node *Stream* object.
+- These objects emit events that can be picked up on.
+-  The most common event types are:
+  1. data
+  2. error
+  3. end
+- Accepting events comes in the format `response.on( "event_type", function( data ){} )`.
+- The response object has a method called `setEncoding()` and will output strings when passed "utf8".
+- When setting the encoding, you want to apply it to the response object **BEFORE** attempting to interact with it.
+- Official Solution:
+```
+var http = require('http')
+
+    http.get(process.argv[2], function (response) {
+      response.setEncoding('utf8')
+      response.on('data', console.log)
+      response.on('error', console.error)
+    }).on('error', console.error)
+```
+- Mine is more verbose and does not pass console.log directly.
+
+**Classes beyond this point are not listed via Free Code Camp, but are associated with the learnyounode application**
+
+## HTTP Collect
+
+## Juggling Async
+
+## Time Server
+
+## HTTP File Server
+
+## HTTP Uppercase
+
+## HTTP JSON API Server
+
 
 ## Research:
 
