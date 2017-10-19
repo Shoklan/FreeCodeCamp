@@ -84,9 +84,28 @@ var http = require('http')
 ```
 - Mine is more verbose and does not pass console.log directly.
 
-**Classes beyond this point are not listed via Free Code Camp, but are associated with the learnyounode application**
-
 ## HTTP Collect
+- You can install a node package using `npm install <package_name>`.
+- There are two pre-built packages for dealing with stream data:
+  1. `bl` Buffer List.
+  2. `concat-stream`
+- You can use `response.pipe()` which will collect all the data before invoking the callback.
+- Printing the output will require you to append `.toString()` to the buffer object.
+```
+var http = require('http')
+var bl = require('bl')
+
+http.get(process.argv[2], function (response) {
+  response.pipe(bl(function (err, data) {
+    if (err) {
+      return console.error(err)
+    }
+    data = data.toString()
+    console.log(data.length)
+    console.log(data)
+  }))
+})
+```
 
 ## Juggling Async
 
@@ -103,3 +122,4 @@ var http = require('http')
 
 ## Reference:
 - [Callbacks]( https://github.com/maxogden/art-of-node#callbacks )
+- [bl Package](https://www.npmjs.com/package/bl)
