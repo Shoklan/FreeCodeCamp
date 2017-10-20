@@ -108,6 +108,19 @@ http.get(process.argv[2], function (response) {
 ```
 
 ## Juggling Async
+- Managing the asynchronous calls is the important difficulty about node.
+- Remember that asynchronous calls do not return input so you need to have the callback process the data.
+- Each entry in the list must be a function!
+```
+async.series([
+        function(callback){ http.get( urlTarget1, callback )},
+        function(callback){ http.get( urlTarget2, callback )},
+        function(callback){ http.get( urlTarget3, callback )} ],
+        printResponse
+);
+```
+-
+
 
 ## Time Server
 
@@ -123,3 +136,4 @@ http.get(process.argv[2], function (response) {
 ## Reference:
 - [Callbacks]( https://github.com/maxogden/art-of-node#callbacks )
 - [bl Package](https://www.npmjs.com/package/bl)
+- [async Package](https://www.npmjs.com/package/async)
