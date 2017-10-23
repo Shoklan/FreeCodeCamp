@@ -110,17 +110,42 @@ http.get(process.argv[2], function (response) {
 ## Juggling Async
 - Managing the asynchronous calls is the important difficulty about node.
 - Remember that asynchronous calls do not return input so you need to have the callback process the data.
-- Each entry in the list must be a function!
+- Each entry in the list must be a function for `async.series([], callback()).`
+- You can use `setTimeout( function(), <n>)` where n is milliseconds to delay for input.
+- Official Solution:
 ```
-async.series([
-        function(callback){ http.get( urlTarget1, callback )},
-        function(callback){ http.get( urlTarget2, callback )},
-        function(callback){ http.get( urlTarget3, callback )} ],
-        printResponse
-);
-```
--
+var http = require('http')
+    var bl = require('bl')
+    var results = []
+    var count = 0
 
+    function printResults () {
+      for (var i = 0; i < 3; i++) {
+        console.log(results[i])
+      }
+    }
+
+    function httpGet (index) {
+      http.get(process.argv[2 + index], function (response) {
+        response.pipe(bl(function (err, data) {
+          if (err) {
+            return console.error(err)
+          }
+
+          results[index] = data.toString()
+          count++
+
+          if (count === 3) {
+            printResults()
+          }
+        }))
+      })
+    }
+
+    for (var i = 0; i < 3; i++) {
+      httpGet(i)
+    }
+```
 
 ## Time Server
 
