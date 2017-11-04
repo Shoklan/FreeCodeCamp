@@ -148,8 +148,49 @@ var http = require('http')
 ```
 
 ## Time Server
+- To create the server, you have to import module `require('net')`.
+- To initialize a server, you call `net.createServer( f(){})`.
+- The `socket` contains tons of metadata information.
+- You can write data to the socket using `socket.write( data )`.
+- You should close the connection using `socket.end()` after you're done.
+- Also, you can write data and close the connection by passing data to `.end()`.
+
+```js
+const net = require('net')
+var port = process.argv[2]
+var date = new Date();
+
+// "YYYY-MM-DD hh:mm"
+
+//console.log( date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes()  )
+
+var server = net.createServer( function( socket ){
+        socket.end( date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() )
+})
+
+// server.listen( port )
+```
 
 ## HTTP File Server
+- A TCP server will require the module `http`.
+- It too has a function called `http.createServer(f(){})`.
+- The callback for `.createServer()` is `function callback (request, response){/*..*/}`.
+- Both `request` and `response` are both streams.
+- Like before, the function returns an instance and you will need to call `server.listen( 8000 )` like before.
+```js
+const http = require('http')
+const fs = require('fs')
+var port = process.argv[2]
+var file = process.argv[3]
+
+
+var server = http.createServer( function( req, res ){
+        res.pipe( fs.createReadStream( file ))
+})     
+
+
+server.listen( port )
+```
 
 ## HTTP Uppercase
 
