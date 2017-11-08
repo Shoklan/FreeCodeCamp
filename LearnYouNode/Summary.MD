@@ -148,22 +148,17 @@ var http = require('http')
 ```
 
 ## Time Server
+<<<<<<< HEAD
 - You use the `net` module for basic networking functions.
-- To create an object that accepts connections, you use `net.createServer()`.
+- To create the server, you have to import module `require('net')`.
+- To initialize a server, you call `net.createServer( f(){})`.
 - This returns an instance - which you will need to use to listen to a specific port.
-- `server.list( <port_number> )`.
-- A typical TCP server:
-```
-var net = require('net')  
-var server = net.createServer(function (socket) {  
-  // socket handling logic  
-})  
+- To accept connections, you need to call `server.listen( <port_number> )`.
 
-server.listen(8000)
-```
+
 - socket objects contain a lot of metadata, but you can also read/write on them.
 - You put data on the socket using `socket.write( <data> )`.
-- You can close a socket using `socket.end()`.
+- You should close the connection using `socket.end()` after you're done.
 - `.end()` also accepts a data argument and can therefore be used to write and close.
 - You can create a date using `Date()` object.
 - List of other useful functions:
@@ -173,6 +168,18 @@ server.listen(8000)
   * `date.getHours()`
   * `date.getMinutes()`
 
+- A typical TCP server:
+```
+var net = require('net')  
+var server = net.createServer(function (socket) {  
+  // socket handling logic  
+})  
+
+server.listen(8000)
+```
+
+
+
 Solution, sort of:
 ```
 const net = require('net')
@@ -181,13 +188,32 @@ var date = new Date();
 
 // "YYYY-MM-DD hh:mm"
 var server = net.createServer( function( socket ){
-        socket.end( date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + “\n”)
+        socket.end( date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + "\n" )
 })
 
 server.listen( port )
 ```
 
 ## HTTP File Server
+- A TCP server will require the module `http`.
+- It too has a function called `http.createServer(f(){})`.
+- The callback for `.createServer()` is `function callback (request, response){/*..*/}`.
+- Both `request` and `response` are both streams.
+- Like before, the function returns an instance and you will need to call `server.listen( 8000 )` like before.
+```
+const http = require('http')
+const fs = require('fs')
+var port = process.argv[2]
+var file = process.argv[3]
+
+
+var server = http.createServer( function( req, res ){
+        res.pipe( fs.createReadStream( file ))
+})     
+
+
+server.listen( port )
+```
 
 ## HTTP Uppercase
 
