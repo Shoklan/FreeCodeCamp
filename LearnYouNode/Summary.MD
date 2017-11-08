@@ -148,6 +148,44 @@ var http = require('http')
 ```
 
 ## Time Server
+- You use the `net` module for basic networking functions.
+- To create an object that accepts connections, you use `net.createServer()`.
+- This returns an instance - which you will need to use to listen to a specific port.
+- `server.list( <port_number> )`.
+- A typical TCP server:
+```
+var net = require('net')  
+var server = net.createServer(function (socket) {  
+  // socket handling logic  
+})  
+
+server.listen(8000)
+```
+- socket objects contain a lot of metadata, but you can also read/write on them.
+- You put data on the socket using `socket.write( <data> )`.
+- You can close a socket using `socket.end()`.
+- `.end()` also accepts a data argument and can therefore be used to write and close.
+- You can create a date using `Date()` object.
+- List of other useful functions:
+  * `date.getFullYear()``
+  * `date.getMonth()`; starts at index 0.
+  * `date.getDate()`
+  * `date.getHours()`
+  * `date.getMinutes()`
+
+Solution, sort of:
+```
+const net = require('net')
+var port = process.argv[2]
+var date = new Date();
+
+// "YYYY-MM-DD hh:mm"
+var server = net.createServer( function( socket ){
+        socket.end( date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + “\n”)
+})
+
+server.listen( port )
+```
 
 ## HTTP File Server
 
